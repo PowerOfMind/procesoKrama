@@ -9,6 +9,8 @@ let picturelUrl;
 let price;
 let tipo;
 let activo;
+let itemListURL;
+let itemUrl;
 
 window.addEventListener("load", () => {
     dispositivos = document.querySelector("#dispositivos");
@@ -16,11 +18,15 @@ window.addEventListener("load", () => {
     descripcion = document.querySelector("#descripcion");
     imagen = document.querySelector("#imagen");
 
-    dispositivos.addEventListener("change", (e) => {
-        option = false;
-        itemSeleccionado = e.target.value;
-        cargarDispositivos(itemSeleccionado);
-    })
+    // $(document).on('click', '.dropdown-menu li a', function () {
+    //     $('#dispositivos').val($(this).html());
+    // });
+    // dispositivos.addEventListener("click", (e) => {
+    //     activo = $('#dispositivos').val();
+    //     console.log("activo", activo);
+    //     itemSeleccionado = e.target.value;
+    //     cargarDispositivos(itemSeleccionado);
+    // })
     elementos.addEventListener("click", (e) => {
         dispositivoSeleccionado = e.target.value;
         cargarContenido(dispositivoSeleccionado);
@@ -48,11 +54,51 @@ function cargarDispositivos(id) {
                     nodoOption.classList += "list-group-item list-group-item-action";
                     nodoOption.href += "#"
                     nodoOption.innerHTML += `descripcion: ${element.description} precio: ${element.price}€`;
+
                     elementos.appendChild(nodoOption);
                 })
             }
         )
 }
+
+$(document).ready(function () {
+    $("#dispositivos").change(function (e) {
+        id = $("#dispositivos").val();
+        console.log("id", id);
+        url = `https://test.krama.es:8014/item/list/${id}`;
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: id,
+            dataType: "json",
+            success: function (response) {
+                response.forEach((element) => {
+                    let codigoCarta = `<div class="col" id="div-elementos">
+                    <div class="card">
+                        <img src="${element.pictureUrl}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">${element.description}</h5>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item">${element.price}€</li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                    </div>`;
+                    $(".card").fadeIn();
+                    $("#contenedor_cartas").append(codigoCarta);
+                });
+            },
+            rej:function(){
+
+            }
+        });
+    });
+    $("#dispositivos").change(function (e) {
+        $("#contenedor_cartas ").html("");
+    })
+});
 
 function cargarContenido(id) {
     let url = `https://test.krama.es:8014/item/${id}`;
@@ -69,11 +115,10 @@ function cargarContenido(id) {
             (res) => {
                 console.log("resultados contenido: ", res);
 
-                //if (element.id == id) {
                 let nodoOption = document.createElement("p");
                 nodoOption.innerHTML = `${res.text}`;
                 descripcion.appendChild(nodoOption);
-                //}
+                
 
             },
             (rej) => { }
