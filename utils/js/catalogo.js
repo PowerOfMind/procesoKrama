@@ -8,9 +8,7 @@ let stock;
 let picturelUrl;
 let price;
 let tipo;
-let activo;
-let itemListURL;
-let itemUrl;
+let contCartas;
 
 window.addEventListener("load", () => {
     dispositivos = document.querySelector("#dispositivos");
@@ -27,41 +25,42 @@ window.addEventListener("load", () => {
     //     itemSeleccionado = e.target.value;
     //     cargarDispositivos(itemSeleccionado);
     // })
-    elementos.addEventListener("click", (e) => {
-        dispositivoSeleccionado = e.target.value;
-        cargarContenido(dispositivoSeleccionado);
-        cargarImagen(dispositivoSeleccionado);
-    })
+    // elementos.addEventListener("click", (e) => {
+    //     dispositivoSeleccionado = e.target.value;
+    //     cargarContenido(dispositivoSeleccionado);
+    //     cargarImagen(dispositivoSeleccionado);
+    // })
 })
 
 
-function cargarDispositivos(id) {
-    let url = `https://test.krama.es:8014/item/list/${id}`;
-    let nodosBorrar = document.querySelectorAll("#elementos a");
-    nodosBorrar.forEach((e) => e.remove());
-    console.log(url);
-    fetch(url)
-        .then(
-            (res) => res.json(),
-            (rej) => { }
-        ).then(
-            (res) => {
-                console.log("resultados", res);
-                res.forEach((element) => {
-                    console.log("description: ", element.description + "id:", element.id);
-                    let nodoOption = document.createElement("a");
-                    nodoOption.value = element.id;
-                    nodoOption.classList += "list-group-item list-group-item-action";
-                    nodoOption.href += "#"
-                    nodoOption.innerHTML += `descripcion: ${element.description} precio: ${element.price}€`;
+// function cargarDispositivos(id) {
+//     let url = `https://test.krama.es:8014/item/list/${id}`;
+//     let nodosBorrar = document.querySelectorAll("#elementos a");
+//     nodosBorrar.forEach((e) => e.remove());
+//     console.log(url);
+//     fetch(url)
+//         .then(
+//             (res) => res.json(),
+//             (rej) => { }
+//         ).then(
+//             (res) => {
+//                 console.log("resultados", res);
+//                 res.forEach((element) => {
+//                     console.log("description: ", element.description + "id:", element.id);
+//                     let nodoOption = document.createElement("a");
+//                     nodoOption.value = element.id;
+//                     nodoOption.classList += "list-group-item list-group-item-action";
+//                     nodoOption.href += "#"
+//                     nodoOption.innerHTML += `descripcion: ${element.description} precio: ${element.price}€`;
 
-                    elementos.appendChild(nodoOption);
-                })
-            }
-        )
-}
+//                     elementos.appendChild(nodoOption);
+//                 })
+//             }
+//         )
+// }
 
 $(document).ready(function () {
+
     $("#dispositivos").change(function (e) {
         id = $("#dispositivos").val();
         console.log("id", id);
@@ -80,7 +79,10 @@ $(document).ready(function () {
                         <h5 class="card-title">${element.description}</h5>
                         <div>
                             <ul class="list-group">
-                                <li class="list-group-item">${element.price}€</li>
+                                <li class="list-group-item">${element.price} €</li>
+                                <li class="list-group-item">
+                                    <a class="list-group-item list-group-item-action active" id="btn_detalle" data-toggle="list" href="#list-home" role="tab" aria-controls="detalle" onclick="cargarDetalle(${element.id})">Detalle</a>
+                                </li>
                             </ul>
                         </div>
                         </div>
@@ -90,7 +92,7 @@ $(document).ready(function () {
                     $("#contenedor_cartas").append(codigoCarta);
                 });
             },
-            rej:function(){
+            rej: function () {
 
             }
         });
@@ -98,9 +100,19 @@ $(document).ready(function () {
     $("#dispositivos").change(function (e) {
         $("#contenedor_cartas ").html("");
     })
+
+    
+    
+
 });
 
+function cargarDetalle(id){
+    cargarContenido(id);
+    cargarImagen(id)
+}
+
 function cargarContenido(id) {
+    console.log("id",id);
     let url = `https://test.krama.es:8014/item/${id}`;
 
     let nodosBorrar = document.querySelectorAll("#descripcion p");
@@ -118,7 +130,7 @@ function cargarContenido(id) {
                 let nodoOption = document.createElement("p");
                 nodoOption.innerHTML = `${res.text}`;
                 descripcion.appendChild(nodoOption);
-                
+
 
             },
             (rej) => { }
