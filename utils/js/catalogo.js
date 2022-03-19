@@ -92,68 +92,83 @@ $(document).ready(function () {
                     $("#contenedor_cartas").append(codigoCarta);
                 });
             },
-            rej: function () {
-
-            }
         });
     });
     $("#dispositivos").change(function (e) {
         $("#contenedor_cartas ").html("");
+        $("#contenedor_detalle ").html("");
     })
 
-    
-    
+
+
 
 });
 
-function cargarDetalle(id){
-    cargarContenido(id);
-    cargarImagen(id)
-}
+// function cargarDetalle(id) {
+//     let detalleItem = `<!-- About Section -->
+//     <div class="w3-container w3-padding-32 w3-center">  
+//       <h3>About Me, The Food Man</h3><br>
+//       <img src="${cargarImagen(id)}" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">
+//       <div class="w3-padding-32">
+//         <h4><b>I am Who I Am!</b></h4>
+//         <h6><i>With Passion For Real, Good Food</i></h6>
+//         <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+//       </div>
+//     </div>`;
+//     $("#contenedor_detalle").append(detalleItem);
+//     cargarContenido(id);
+//     cargarImagen(id)
+// }
 
-function cargarContenido(id) {
-    console.log("id",id);
+function cargarDetalle(id) {
+    console.log("id", id);
     let url = `https://test.krama.es:8014/item/${id}`;
 
-    let nodosBorrar = document.querySelectorAll("#descripcion p");
-    nodosBorrar.forEach((e) => e.remove());
-    console.log(url);
-    fetch(url)
-        .then(
-            (res) => res.json(),
-            (rej) => { }
-        )
-        .then(
-            (res) => {
-                console.log("resultados contenido: ", res);
-
-                let nodoOption = document.createElement("p");
-                nodoOption.innerHTML = `${res.text}`;
-                descripcion.appendChild(nodoOption);
-
-
-            },
-            (rej) => { }
-        );
-}
-function cargarImagen(id) {
-    let url = `https://test.krama.es:8014/item/${id}`;
-    let nodosBorrar = document.querySelectorAll("#imagen img");
-    nodosBorrar.forEach((e) => e.remove());
-    console.log(url);
-    fetch(url)
-        .then(
-            (res) => res.json(),
-            (rej) => { }
-        )
-        .then(
-            (res) => {
-                let nodoOption = document.createElement("img");
-                nodoOption.src = res.pictureUrl;
-                imagen.appendChild(nodoOption);
+    // let nodosBorrar = document.querySelectorAll("#contenedor_detalle");
+    // nodosBorrar.forEach((e) => e.remove());
+    $("#contenedor_detalle ").html("");
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: id,
+        dataType: "json",
+        success: function (response) {
+            console.log("resultados contenido: ", response);
+            let detalleItem = `
+                    <div class="w3-container w3-padding-32 w3-center">  
+                    <h3>About Me, The Food Man</h3><br>
+                    <img src="${response.pictureUrl}" alt="Me" class="w3-image" style="display:block;margin:auto" width="800" height="533">
+                        <div class="w3-padding-32">
+                            <h4><b>${response.description}</b></h4>
+                            <h6><i>${response.stock}</i></h6>
+                            <p>${response.text}</p>
+                        </div>
+                    </div>`;
+            $("#contenedor_detalle").append(detalleItem);
+            console.log(detalleItem);
 
 
-            },
-            (rej) => { }
-        );
+        },
+    });
+    // function cargarImagen(id) {
+    //     let url = `https://test.krama.es:8014/item/${id}`;
+    //     let nodosBorrar = document.querySelectorAll("#imagen img");
+    //     nodosBorrar.forEach((e) => e.remove());
+    //     console.log(url);
+    //     fetch(url)
+    //         .then(
+    //             (res) => res.json(),
+    //             (rej) => { }
+    //         )
+    //         .then(
+    //             (res) => {
+    //                 let nodoOption = document.createElement("img");
+    //                 nodoOption.src = res.pictureUrl;
+    //                 imagen.appendChild(nodoOption);
+
+
+    //             },
+    //             (rej) => { }
+    //         );
+    // }
 }
