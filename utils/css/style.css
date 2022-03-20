@@ -1,3 +1,17 @@
-container{
-    width: 80%;
+container {
+  width: 80%;
+}
+#contenedor_detalle {
+  width: 80%;
+  margin: auto;
+}
+#contenedor_detalle img {
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+#div-elementos {
+  width: auto;
+  height: auto;
 }
