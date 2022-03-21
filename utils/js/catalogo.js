@@ -119,6 +119,7 @@ function cargarElementos(id){
 }
 
 function cargarDetalle(id) {
+    $("#contenedor_cartas ").html("");
     console.log("id", id);
     let url = `https://test.krama.es:8014/item/${id}`;
     $("#contenedor_detalle ").html("");
@@ -155,5 +156,6 @@ function cargarDetalle(id) {
     var bar1 = new ldBar("#progBar");
     var bar2 = document.getElementById('progBar').ldBar;
     bar1.set(60);
+    
 
 }
