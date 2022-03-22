@@ -1,5 +1,7 @@
-container {
-  width: 80%;
+
+body{
+  margin-bottom: 150px;
+  align-items: center;
 }
 #contenedor_detalle {
   width: 80%;
@@ -15,6 +17,7 @@ container {
   width: 100%;
   position: fixed;
   padding: 10px 0;
+  margin: auto;
 }
 .card {
   min-height: 650px;
@@ -26,11 +29,8 @@ container {
   margin: auto;
 }
 
-#btn_detalle {
-  
-}
 .responsive {
-  width: 100%;
+  width: 80%;
   height: auto;
 }
 
