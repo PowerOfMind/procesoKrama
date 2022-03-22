@@ -1,3 +1,6 @@
+// FUNCION PARA HACER LA PRIMERA CARGA DE ELEMENTOS
+// LOS ELEMENTOS SE CARGAN EN UNA CARD DONDE APARECEN
+// LA IMAGEN, EL TITULO, EL PRECIO Y UN BOTON PARA ACCEDER AL DETALLE DEL MISMO
 function cargarElementos(id) {
     console.log("id", id);
     url = `https://test.krama.es:8014/item/list/${id}`;
@@ -26,21 +29,26 @@ function cargarElementos(id) {
             });
         },
     });
+    // ESTO SE UTILIZA PARA BORRAR LOS DATOS DE LA VISTA Y 
+    // EVITAR QUE SE DUPLIQUE LA INFOMRACION
     $("#contenedor_cartas").html("");
     $("#contenedor_detalle ").html("");
 }
-function cargarInicio(){
-    let inicio = 
-    `<h2>Proceso de seleccion de Krama</h2>
+// AL PULSAR EL LOGO, CARGA LA PANTALLA PRINCIPAL
+function cargarInicio() {
+    let inicio =
+        `<h2>Proceso de seleccion de Krama</h2>
     <p>
       En esta aplicación desarrollada con JavaScript, podemos elegir entre
       las distintas opciones del navegador, ver los elementos y ver el
       detalle de estos.
     </p>`
+    // ESTO SE UTILIZA PARA BORRAR TODOS LOS DATOS 
+    // Y CARGAR LA PAGINA PRINCIPAL
     $("#contenedor_cartas").html("").append(inicio);
     $("#contenedor_detalle ").html("");
 }
-
+// CON ESTA FUNCION PODEMOS ACCEDER AL DETALLE DE CADA ELEMENTO
 function cargarDetalle(id) {
     $("#contenedor_cartas ").html("");
     console.log("id", id);
@@ -70,10 +78,6 @@ function cargarDetalle(id) {
                         </div>
                     </div>`;
             $("#contenedor_detalle").append(detalleItem);
-
-
         },
     });
-
-
 }
