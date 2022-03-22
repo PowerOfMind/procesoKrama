@@ -1,11 +1,10 @@
-
 body{
   margin-bottom: 150px;
   align-items: center;
 }
 #contenedor_detalle {
   width: 80%;
-  margin: auto;
+  margin: 10%;
 }
 
 #div-elementos {

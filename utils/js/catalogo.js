@@ -29,6 +29,16 @@ function cargarElementos(id) {
     $("#contenedor_cartas ").html("");
     $("#contenedor_detalle ").html("");
 }
+function cargarInicio(){
+    let inicio = 
+    `<h2>Proceso de seleccion de Krama</h2>
+    <p>
+      En esta aplicación desarrollada con JavaScript, podemos elegir entre
+      las distintas opciones del navegador, ver los elementos y ver el
+      detalle de estos.
+    </p>`
+    $("#contenedor_cartas").html("").append(inicio);
+}
 
 function cargarDetalle(id) {
     $("#contenedor_cartas ").html("");
