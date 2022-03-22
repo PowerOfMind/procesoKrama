@@ -2,6 +2,9 @@ body{
   margin-bottom: 150px;
   align-items: center;
 }
+#contenedor_cartas{
+  margin-top: 50px;
+}
 
 #contenedor_detalle {
   width: 80%;
@@ -12,6 +15,7 @@ body{
   display: flex;
 }
 #contenedor_cartas card{
+  
   margin: 0 auto;
   display: flex;
 }
