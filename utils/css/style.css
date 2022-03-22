@@ -5,13 +5,73 @@ container {
   width: 80%;
   margin: auto;
 }
-#contenedor_detalle img {
-  width: auto;
-  height: auto;
-  display: block;
-  margin: auto;
-}
+
 #div-elementos {
   width: auto;
   height: auto;
+}
+#footer {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  padding: 10px 0;
+}
+.card {
+  min-height: 650px;
+  min-width: 450px;
+}
+#title_card,
+#price_card {
+  padding: 10px;
+  margin: auto;
+}
+
+#btn_detalle {
+  
+}
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .card {
+    min-height: 650px;
+    min-width: auto;
+  }
+ 
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .card {
+    min-height: 650px;
+    min-width: 550px;
+  }
+  
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .card {
+    min-height: 650px;
+    min-width: auto;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .card {
+    min-height: 650px;
+    min-width: auto;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .card {
+    min-height: 650px;
+    min-width: auto;
+  }
 }
