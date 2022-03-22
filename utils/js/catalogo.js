@@ -26,7 +26,7 @@ function cargarElementos(id) {
             });
         },
     });
-    $("#contenedor_cartas ").html("");
+    $("#contenedor_cartas").html("");
     $("#contenedor_detalle ").html("");
 }
 function cargarInicio(){
@@ -38,6 +38,7 @@ function cargarInicio(){
       detalle de estos.
     </p>`
     $("#contenedor_cartas").html("").append(inicio);
+    $("#contenedor_detalle ").html("");
 }
 
 function cargarDetalle(id) {
@@ -53,7 +54,7 @@ function cargarDetalle(id) {
         success: function (response) {
             console.log("resultados contenido: ", response);
             let detalleItem = `
-                    <div class=" container">
+                    <div class="container" id="detalle">
                     <img src="${response.pictureUrl}" class="w3-image responsive center" id="img_detalle">
                         <div class="w3-padding-32">
                             <h4><b>${response.description}</b></h4>

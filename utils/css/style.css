@@ -2,11 +2,19 @@ body{
   margin-bottom: 150px;
   align-items: center;
 }
+
 #contenedor_detalle {
   width: 80%;
-  margin: 10%;
+  margin: auto;
 }
-
+#contenedor_detalle img{
+  margin: 0 auto;
+  display: flex;
+}
+#contenedor_cartas card{
+  margin: 0 auto;
+  display: flex;
+}
 #div-elementos {
   width: auto;
   height: auto;
@@ -47,6 +55,8 @@ body{
   .card {
     min-height: 650px;
     min-width: 550px;
+    max-width: 550px;
+    margin: auto;
   }
   
 }
@@ -56,6 +66,7 @@ body{
   .card {
     min-height: 650px;
     min-width: auto;
+    margin: auto;
   }
 }
 
@@ -64,6 +75,7 @@ body{
   .card {
     min-height: 650px;
     min-width: auto;
+    margin: auto;
   }
 }
 
