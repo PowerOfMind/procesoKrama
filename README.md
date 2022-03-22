@@ -12,3 +12,6 @@
 <p>
   La aplicacion es responsive, por lo que podremos abrirla tanto en un dispositivo de escritorio como en un dispositivo móvil.
 </p>
+
+<h2>Como ver el resultado</h2>
+<p> Para ver el resultado, simplemente hay que clonar el proyecto y abrir directamente el documento "index.html" en el navegador</p>
